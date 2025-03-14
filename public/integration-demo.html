@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GolfingGrouper Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    
+    h1 {
+      margin: 0;
+    }
+    
+    .tee-time-card {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .tee-time-info {
+      flex: 1;
+    }
+    
+    .tee-time-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .book-button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .book-button:hover {
+      background-color: #2980b9;
+    }
+    
+    .time {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    
+    .price {
+      font-weight: bold;
+      color: #27ae60;
+    }
+    
+    .details {
+      color: #7f8c8d;
+      font-size: 0.9em;
+    }
+  </style>
+  <!-- Include the GolfingGrouper button script -->
+  <script src="js/golfing-grouper-integration.js" async></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Demo Golf Club - Tee Times</h1>
+    </header>
+    
+    <h2>Available Tee Times for June 15, 2023</h2>
+    
+    <!-- Tee Time 1 -->
+    <div class="tee-time-card">
+      <div class="tee-time-info">
+        <div class="time">8:00 AM</div>
+        <div class="details">18 Holes • Walking • Max 4 Players</div>
+        <div class="price">$75.00 per player</div>
+      </div>
+      <div class="tee-time-actions">
+        <!-- GolfingGrouper Button -->
+        <div 
+          class="golfing-grouper-button" 
+          data-platform-id="1" 
+          data-course-name="Demo Golf Club" 
+          data-tee-time="2023-06-15T08:00:00Z" 
+          data-holes="18" 
+          data-capacity="4" 
+          data-cost="300.00" 
+          data-booking-url="https://example.com/book/123">
+        </div>
+        <button class="book-button">Book Now</button>
+      </div>
+    </div>
+    
+    <!-- Tee Time 2 -->
+    <div class="tee-time-card">
+      <div class="tee-time-info">
+        <div class="time">8:30 AM</div>
+        <div class="details">18 Holes • Cart Included • Max 4 Players</div>
+        <div class="price">$95.00 per player</div>
+      </div>
+      <div class="tee-time-actions">
+        <!-- GolfingGrouper Button -->
+        <div 
+          class="golfing-grouper-button" 
+          data-platform-id="1" 
+          data-course-name="Demo Golf Club" 
+          data-tee-time="2023-06-15T08:30:00Z" 
+          data-holes="18" 
+          data-capacity="4" 
+          data-cost="380.00" 
+          data-booking-url="https://example.com/book/124">
+        </div>
+        <button class="book-button">Book Now</button>
+      </div>
+    </div>
+    
+    <!-- Tee Time 3 -->
+    <div class="tee-time-card">
+      <div class="tee-time-info">
+        <div class="time">9:00 AM</div>
+        <div class="details">9 Holes • Walking • Max 4 Players</div>
+        <div class="price">$45.00 per player</div>
+      </div>
+      <div class="tee-time-actions">
+        <!-- GolfingGrouper Button -->
+        <div 
+          class="golfing-grouper-button" 
+          data-platform-id="1" 
+          data-course-name="Demo Golf Club" 
+          data-tee-time="2023-06-15T09:00:00Z" 
+          data-holes="9" 
+          data-capacity="4" 
+          data-cost="180.00" 
+          data-booking-url="https://example.com/book/125">
+        </div>
+        <button class="book-button">Book Now</button>
+      </div>
+    </div>
+    
+    <!-- Tee Time 4 -->
+    <div class="tee-time-card">
+      <div class="tee-time-info">
+        <div class="time">9:30 AM</div>
+        <div class="details">9 Holes • Cart Included • Max 4 Players</div>
+        <div class="price">$55.00 per player</div>
+      </div>
+      <div class="tee-time-actions">
+        <!-- GolfingGrouper Button -->
+        <div 
+          class="golfing-grouper-button" 
+          data-platform-id="1" 
+          data-course-name="Demo Golf Club" 
+          data-tee-time="2023-06-15T09:30:00Z" 
+          data-holes="9" 
+          data-capacity="4" 
+          data-cost="220.00" 
+          data-booking-url="https://example.com/book/126">
+        </div>
+        <button class="book-button">Book Now</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html> 
