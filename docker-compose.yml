@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD:-your_secure_password}
       POSTGRES_DB: ${DB_NAME:-golfing_grouper}
     ports:
-      - "5432:5432"
+      - "5434:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -35,10 +35,10 @@ services:
       JWT_SECRET: ${JWT_SECRET:-your_jwt_secret_key_here}
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-your_stripe_secret_key}
       STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-your_stripe_webhook_secret}
-      SENDGRID_API_KEY: ${SENDGRID_API_KEY:-your_sendgrid_api_key}
+      SENDGRID_API_KEY: ${SENDGRID_API_KEY:-your_sendgrid_key}
       SENDGRID_FROM_EMAIL: ${SENDGRID_FROM_EMAIL:-your_verified_email@example.com}
-      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
-      MODAL_URL: ${MODAL_URL:-http://localhost:3000/modal}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:8080}
+      MODAL_URL: ${MODAL_URL:-http://localhost:8080/modal}
     ports:
       - "5000:5000"
     depends_on:
@@ -57,7 +57,7 @@ services:
     container_name: golfing-grouper-frontend
     restart: unless-stopped
     ports:
-      - "3000:80"
+      - "8080:80"
     depends_on:
       - backend
     networks:

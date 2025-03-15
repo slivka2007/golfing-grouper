@@ -1,0 +1,36 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install puppeteer dependencies and other build tools
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont \
+    python3 \
+    make \
+    g++ \
+    git
+
+# Set puppeteer to use system-installed chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true 
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+ENV NODE_ENV=test
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies with caching enabled to speed up future builds
+RUN npm ci && npm cache clean --force
+
+# Copy source code and test files
+COPY . .
+
+# Set environment variables
+ENV PORT=5000
+
+# Default command to run tests
+CMD ["npm", "run", "test:coverage"] 

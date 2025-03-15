@@ -15,14 +15,19 @@ services:
       - test-network
     volumes:
       - postgres_test_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test_user -d golfing_grouper_test"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # API Test Service
   backend-test:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.test
     container_name: golfing-grouper-api-test
-    command: npm test
+    command: npm run test:controllers
     environment:
       NODE_ENV: test
       PORT: 5000
@@ -32,12 +37,16 @@ services:
       DB_USER: test_user
       DB_PASSWORD: test_password
       JWT_SECRET: test_jwt_secret
+      JWT_EXPIRE: 1h
+      JWT_RESET_SECRET: test_reset_secret
+      JWT_TEE_TIME_SECRET: test_tee_time_secret
       STRIPE_SECRET_KEY: test_stripe_key
       STRIPE_WEBHOOK_SECRET: test_webhook_secret
       SENDGRID_API_KEY: test_sendgrid_key
       SENDGRID_FROM_EMAIL: test@example.com
     depends_on:
-      - postgres-test
+      postgres-test:
+        condition: service_healthy
     networks:
       - test-network
     volumes:

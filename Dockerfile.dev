@@ -1,0 +1,29 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install puppeteer dependencies
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont
+
+# Set puppeteer to use system-installed chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true 
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Expose API port
+EXPOSE 5000
+
+# Start development server with nodemon for hot reload
+CMD ["npm", "run", "dev"] 
